@@ -10,7 +10,7 @@
 
         <Image Source="images/backGround.png"></Image>
 
-        <Label Name="christianityCalendar" Foreground="White" Margin="0, 0, 0, 80" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="Auto" Width="Auto">Time</Label>
+        <Label Name="DateLabel" Foreground="White" Margin="0, 0, 0, 80" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="Auto" Width="Auto">Time</Label>
 
         <!-- Second  -->
         <Rectangle Margin="150,0,149,150" Name="rectangleSecond" Stroke="White" Height="120" VerticalAlignment="Bottom">

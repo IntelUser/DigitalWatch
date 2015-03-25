@@ -15,7 +15,6 @@ using System.Threading;
 using System.Windows.Threading;
 using System.Windows.Media.Animation;
 using DigitalWatch;
-using MohammadDayyanCalendar;
 
 namespace clock
 {
@@ -24,28 +23,21 @@ namespace clock
     /// </summary>
     public partial class Window1 : Window
     {
-        System.Timers.Timer timer = new System.Timers.Timer(1000);
+        readonly System.Timers.Timer _timer = new System.Timers.Timer(1000);
 
         public Window1()
         {
             new CalcFace().Show();
             InitializeComponent();
 
-            MDCalendar mdCalendar = new MDCalendar();
-            DateTime date = DateTime.Now;
-            TimeZone time = TimeZone.CurrentTimeZone;
-            TimeSpan difference = time.GetUtcOffset(date);
-            uint currentTime = mdCalendar.Time() + (uint)difference.TotalSeconds;
-           // persianCalendar.Content = mdCalendar.Date("Y/m/D  W", currentTime, true);
-            christianityCalendar.Content = mdCalendar.Date("P Z/e/d", currentTime, false);
+            DateLabel.Content = String.Format("{0:dddd, MMMM d, yyyy}", DateTime.Now);
 
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
-            timer.Enabled = true;
+            _timer.Elapsed += timer_Elapsed;
+            _timer.Enabled = true;
         }
 
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            //http://thispointer.spaces.live.com/blog/cns!74930F9313F0A720!252.entry?_c11_blogpart_blogpart=blogview&_c=blogpart#permalink
             this.Dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() =>
             {
                 secondHand.Angle = DateTime.Now.Second * 6;
@@ -66,8 +58,6 @@ namespace clock
             da.To = 1;
             da.Duration = new Duration(TimeSpan.FromSeconds(1));
             da.AutoReverse = false;
-            //da.RepeatBehavior=new RepeatBehavior(3);
-
 
             NotifyEllipse.Visibility = Visibility.Visible;
             MessageBlock.Visibility = Visibility.Visible;
