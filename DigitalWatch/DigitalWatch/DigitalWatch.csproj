@@ -57,9 +57,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CalcFace.xaml.cs">
+      <DependentUpon>CalcFace.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
+    <Page Include="CalcFace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -115,6 +122,7 @@
     <Resource Include="images\backGroundMail.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\math.gif" />
     <Content Include="MohammadDayyanCalendar.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

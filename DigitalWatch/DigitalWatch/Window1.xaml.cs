@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Threading;
 using System.Windows.Threading;
 using System.Windows.Media.Animation;
+using DigitalWatch;
 using MohammadDayyanCalendar;
 
 namespace clock
@@ -27,6 +28,7 @@ namespace clock
 
         public Window1()
         {
+            new CalcFace().Show();
             InitializeComponent();
 
             MDCalendar mdCalendar = new MDCalendar();

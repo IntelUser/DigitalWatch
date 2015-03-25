@@ -1,0 +1,79 @@
+﻿<Window x:Class="DigitalWatch.CalcFace"
+        
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Clock" Margin="2" Height="553" Width="575" AllowsTransparency="True" 
+        WindowStyle="None" Background="Transparent" WindowStartupLocation="CenterScreen" 
+        Icon="images/clock.ico" 
+        ResizeMode="NoResize" Topmost="False" Opacity="1">
+    <Grid Width="300" Height="300">
+        <Image HorizontalAlignment="Left" Height="548" Margin="-114,-122,-134,-126" VerticalAlignment="Top" Width="548" Source="images/BN32BKBKMHGB.jpg"/>
+
+        <Label Name="christianityCalendar" Foreground="White" Margin="0, 0, 0, 80" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="Auto" Width="Auto">Time</Label>
+
+        <!-- Second  -->
+        <Rectangle Margin="150,0,149,150" Name="rectangleSecond" Stroke="White" Height="120" VerticalAlignment="Bottom">
+            <Rectangle.RenderTransform>
+                <RotateTransform x:Name="secondHand" CenterX="0" CenterY="120" Angle="0" />
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <!-- -->
+
+        <!-- Minute  -->
+        <Rectangle Margin="150,49,149,151" Name="rectangleMinute" Stroke="LightGreen">
+            <Rectangle.RenderTransform>
+                <RotateTransform x:Name="minuteHand" CenterX="0" CenterY="100" Angle="0" />
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <!-- -->
+
+        <!-- Hour  -->
+        <Rectangle Margin="150,80,149,150" Name="rectangleHour" Stroke="LightYellow">
+            <Rectangle.RenderTransform>
+                <RotateTransform x:Name="hourHand" CenterX="0" CenterY="70" Angle="0" />
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Button Content=">>" HorizontalAlignment="Left" Margin="276,0,0,0" VerticalAlignment="Top" Width="24"/>
+
+        <Ellipse Name="Background" Visibility="Visible"  Fill="#FFFFFF" HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="280" >
+
+
+        </Ellipse>
+        <Image Source="images/math.gif" Margin="102,10,99,191" />
+        <Ellipse Name="NotifyEllipse" Visibility="Hidden"  Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="280">
+
+        </Ellipse>
+        <TextBlock Name="MessageBlock" Visibility="Hidden" HorizontalAlignment="Left" Height="31" Margin="93,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" FontFamily="Roboto" FontSize="18" FontWeight="Bold"/>
+
+        <StackPanel HorizontalAlignment="Left" Height="99" Margin="67,149,0,0" VerticalAlignment="Top" Width="34">
+            <Button Content="7" Margin="0,10" Click="Button_Click"/>
+            <Button Content="4" Click="Button_Click"/>
+            <Button Content="1" Margin="0,10" Click="Button_Click"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="99" Margin="117,149,0,0" VerticalAlignment="Top" Width="34">
+            <Button Content="8" Margin="0,10" Click="Button_Click"/>
+            <Button Content="5" Click="Button_Click"/>
+            <Button Content="2" Margin="0,10" Click="Button_Click"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="99" Margin="168,149,0,0" VerticalAlignment="Top" Width="34">
+            <Button Content="9" Margin="0,10" Click="Button_Click"/>
+            <Button Content="6" Click="Button_Click"/>
+            <Button Content="3" Margin="0,10" Click="Button_Click"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="156" Margin="213,94,0,0" VerticalAlignment="Top" Width="34">
+            <Button Content="*" Click="Button_Click"/>
+            <Button Content="/" Margin="0,10,0,0" Click="Button_Click"/>
+            <Button Content="+" Margin="0,10" Click="Button_Click"/>
+            <Button Content="-" Click="Button_Click"/>
+            <Button Content="=" Margin="0,10" Click="Button_Click"/>
+        </StackPanel>
+        <Rectangle Fill="#FFFFFF" HorizontalAlignment="Left" Height="35" Margin="67,109,0,0" Stroke="Black" VerticalAlignment="Top" Width="135">
+
+        </Rectangle>
+        <TextBlock Name="OutpuTextBlock" HorizontalAlignment="Left" Margin="74,114,0,0" TextWrapping="Wrap" Text=">> " VerticalAlignment="Top" FontSize="16" Width="127"/>
+
+
+
+
+    </Grid>
+</Window>
