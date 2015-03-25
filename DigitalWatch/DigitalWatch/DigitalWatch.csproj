@@ -34,7 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MohammadDayyanCalendar">
+    <Reference Include="MohammadDayyanCalendar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Downloads\Clock\clock\MohammadDayyanCalendar.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -112,6 +113,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\backGroundMail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MohammadDayyanCalendar.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
