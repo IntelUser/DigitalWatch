@@ -56,5 +56,31 @@ namespace clock
         {
             this.DragMove();
         }
+
+        private void ShowNotification(string email = "New Email!")
+        {
+            DoubleAnimation da = new DoubleAnimation();
+            da.From = 0;
+            da.To = 1;
+            da.Duration = new Duration(TimeSpan.FromSeconds(1));
+            da.AutoReverse = false;
+            //da.RepeatBehavior=new RepeatBehavior(3);
+
+
+            NotifyEllipse.Visibility = Visibility.Visible;
+            MessageBlock.Visibility = Visibility.Visible;
+            MessageBlock.Text = email;
+
+            RectangleGeometry notifyGeometry = new RectangleGeometry();
+            notifyGeometry.Rect = new Rect(0, 0, 300, 100);
+            NotifyEllipse.Clip = notifyGeometry;
+            NotifyEllipse.BeginAnimation(OpacityProperty, da);
+            MessageBlock.BeginAnimation(OpacityProperty, da);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ShowNotification();
+        }
     }
 }
