@@ -27,10 +27,10 @@ namespace clock
 
         public Window1()
         {
-            new CalcFace().Show();
+            //new CalcFace().Show(); this we want to happen in a different state
             InitializeComponent();
 
-            DateLabel.Content = String.Format("{0:dddd, MMMM d, yyyy}", DateTime.Now);
+            DateLabel.Content = String.Format("{0:dddd, MMMM d, yyyy}", Time.TimeManager.GetTime());
 
             _timer.Elapsed += timer_Elapsed;
             _timer.Enabled = true;
