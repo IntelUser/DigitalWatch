@@ -12,19 +12,17 @@ namespace DigitalWatch
     public static class Watch
     {
         //private readonly EmailConnector _emailConnector;
-        private static Context _context;
-        private static readonly State[] States = new State[]{new AnalogWatchState(), new CalculatorWatchState()};
+        private static readonly Context Context = new Context();
+        private static readonly Queue<State> States = new Queue<State>();
        
 
         public static void Start()
         {
-            _context = new Context {State = States[0]};
-            
-            _context.State.Show();
-            
-            
-            
+            States.Enqueue(new AnalogWatchState());
+            States.Enqueue(new CalculatorWatchState());
+            States.Enqueue(new DigitalWatchState());
 
+           SwitchState();
         }
 
         public static void ShowEmailNotification(string message)
@@ -34,13 +32,14 @@ namespace DigitalWatch
 
         public static void SwitchState()
         {
-            foreach (var state in States.Where(state => state != _context.State))
+            if (Context.State != null)
             {
-                _context.State.Hide();
-                _context.State = state;
-                _context.State.Show();
-                break;
+               Context.State.Hide();
             }
+            var tempState = States.Dequeue();       // remove state from stack
+            Context.State = tempState;
+            States.Enqueue(tempState);              // re-add state to stack
+            Context.State.Show();
         }
     }
 }

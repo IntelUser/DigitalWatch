@@ -11,6 +11,7 @@ namespace DigitalWatch.States
         {
             Calculator = new CalcFace();
             Analog = new AnalogFace();
+            Digital = new DigitalFace();
         }
 
         public virtual void Show()
