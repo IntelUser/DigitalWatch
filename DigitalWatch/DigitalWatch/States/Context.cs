@@ -9,8 +9,19 @@ namespace DigitalWatch.States
 {
     public class Context
     {
-        public AbstractState State { get; set; }
+        public State State { get; set; }
 
-        
+        public void Show()
+        {
+            if (State != null)
+            {
+                State.Show();
+            }
+        }
+
+        public void Hide()
+        {
+            
+        }
     }
 }

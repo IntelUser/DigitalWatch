@@ -57,8 +57,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="States\AbstractState.cs" />
+    <Compile Include="States\State.cs" />
     <Compile Include="States\AnalogWatchState.cs" />
+    <Compile Include="States\CalculatorWatchState.cs" />
     <Compile Include="Windows\CalcFace.xaml.cs">
       <DependentUpon>CalcFace.xaml</DependentUpon>
     </Compile>
@@ -68,8 +69,8 @@
     <Compile Include="States\Context.cs" />
     <Compile Include="Time.cs" />
     <Compile Include="Watch.cs" />
-    <Compile Include="Windows\Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
+    <Compile Include="Windows\AnalogFace.xaml.cs">
+      <DependentUpon>AnalogFace.xaml</DependentUpon>
     </Compile>
     <Page Include="Windows\CalcFace.xaml">
       <SubType>Designer</SubType>
@@ -79,7 +80,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Windows\Window1.xaml">
+    <Page Include="Windows\AnalogFace.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -122,6 +123,11 @@
     <Resource Include="images\backGroundMail.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Windows\images\math.gif" />
+    <Resource Include="Windows\images\clock.ico" />
+    <Resource Include="Windows\images\BN32BKBKMHGB.jpg" />
+    <Resource Include="Windows\images\backGroundMail.png" />
+    <Resource Include="Windows\images\backGround.png" />
     <Resource Include="images\math.gif" />
     <Content Include="MohammadDayyanCalendar.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

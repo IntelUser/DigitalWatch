@@ -21,11 +21,11 @@ namespace clock
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class AnalogFace : Window
     {
         readonly System.Timers.Timer _timer = new System.Timers.Timer(1000);
 
-        public Window1()
+        public AnalogFace()
         {
             //new CalcFace().Show(); this we want to happen in a different state
             InitializeComponent();
@@ -48,7 +48,7 @@ namespace clock
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+            this.DragMove(); 
         }
 
         private void ShowNotification(string email = "New Email!")
@@ -73,6 +73,11 @@ namespace clock
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ShowNotification();
+        }
+
+        private void Next_window_button_OnClick(object sender, RoutedEventArgs e)
+        {
+             Watch.SwitchState();
         }
     }
 }

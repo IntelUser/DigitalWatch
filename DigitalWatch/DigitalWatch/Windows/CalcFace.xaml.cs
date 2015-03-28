@@ -45,5 +45,10 @@ namespace DigitalWatch
             }            
 
         }
+
+        private void SwitchStatebtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            Watch.SwitchState();
+        }
     }
 }

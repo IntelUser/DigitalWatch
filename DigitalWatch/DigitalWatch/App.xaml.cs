@@ -15,7 +15,7 @@ namespace DigitalWatch
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            new Watch();
+            Watch.Start();
         }
     }
 }
