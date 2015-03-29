@@ -1,23 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace DigitalWatch
+namespace DigitalWatch.Windows
 {
     /// <summary>
     /// Interaction logic for CalcFace.xaml
     /// </summary>
-    public partial class CalcFace : Window
+    public partial class CalcFace : IFace
     {
         public CalcFace()
         {
@@ -27,10 +17,9 @@ namespace DigitalWatch
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Button b = (Button) sender;
-            //is numer
+            var b = (Button) sender;
+            //is number
             int number;
-            string symbol;
             if (Int32.TryParse(b.Content.ToString(), out number))
             {
                 //do something with number 
@@ -40,15 +29,24 @@ namespace DigitalWatch
             {
                 //is operator
                 //do something with operator
-                symbol = b.Content.ToString();
+                var symbol = b.Content.ToString();
                 OutpuTextBlock.Text += symbol;
-            }            
-
+            }
         }
 
         private void SwitchStatebtn_OnClick(object sender, RoutedEventArgs e)
         {
             Watch.SwitchState();
+        }
+
+        public void UpdateTime(DateTime time)
+        {
+            Console.WriteLine(@"Calculator Time is:{0}", time.ToLongTimeString());
+        }
+
+        public void ShowNotification(string message)
+        {
+           Console.WriteLine(@"Notification: {0}", message);
         }
     }
 }

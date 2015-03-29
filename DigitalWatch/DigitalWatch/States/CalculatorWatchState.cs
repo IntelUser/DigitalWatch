@@ -17,5 +17,15 @@ namespace DigitalWatch.States
         {
             Calculator.Hide();
         }
+
+        public override void ShowNotification(string message)
+        {
+            Calculator.ShowNotification(message);
+        }
+
+        public override void UpdateTime(DateTime time)
+        {
+           Calculator.UpdateTime(time);
+        }
     }
 }

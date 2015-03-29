@@ -1,11 +1,13 @@
-﻿using System.Windows;
-using clock;
+﻿using System;
+using System.Windows;
+using DigitalWatch.Windows;
+using DigitalFace = DigitalWatch.Windows.DigitalFace;
 
 namespace DigitalWatch.States
 {
     public abstract class State
     {
-        protected Window Calculator, Analog, Digital;
+        protected IFace Calculator, Analog, Digital;
 
         protected State()
         {
@@ -20,6 +22,16 @@ namespace DigitalWatch.States
         }
 
         public virtual void Hide()
+        {
+            
+        }
+
+        public virtual void UpdateTime(DateTime time)
+        {
+            
+        }
+
+        public virtual void ShowNotification(String message)
         {
             
         }

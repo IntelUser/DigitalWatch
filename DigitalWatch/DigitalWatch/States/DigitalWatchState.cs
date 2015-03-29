@@ -12,11 +12,20 @@ namespace DigitalWatch.States
         {
  	        Digital.Show();
         }
-      
 
         public override void Hide()
         {
             Digital.Hide();
+        }
+
+        public override void ShowNotification(string message)
+        {
+            Digital.ShowNotification(message);
+        }
+
+        public override void UpdateTime(DateTime time)
+        {
+            Digital.UpdateTime(time);
         }
     }
 }

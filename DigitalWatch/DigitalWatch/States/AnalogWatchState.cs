@@ -1,4 +1,6 @@
-﻿namespace DigitalWatch.States
+﻿using System;
+
+namespace DigitalWatch.States
 {
     public class AnalogWatchState : State
     {
@@ -14,7 +16,12 @@
 
         public override void ShowNotification(string message)
         {
-            //todo
+            Analog.ShowNotification(message);
+        }
+
+        public override void UpdateTime(DateTime time)
+        {
+            Analog.UpdateTime(time);
         }
     }
 }

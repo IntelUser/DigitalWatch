@@ -61,9 +61,6 @@
     <Compile Include="States\State.cs" />
     <Compile Include="States\AnalogWatchState.cs" />
     <Compile Include="States\CalculatorWatchState.cs" />
-    <Compile Include="Windows\DigitalFace.xaml.cs">
-      <DependentUpon>DigitalFace.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\CalcFace.xaml.cs">
       <DependentUpon>CalcFace.xaml</DependentUpon>
     </Compile>
@@ -76,10 +73,10 @@
     <Compile Include="Windows\AnalogFace.xaml.cs">
       <DependentUpon>AnalogFace.xaml</DependentUpon>
     </Compile>
-    <Page Include="Windows\DigitalFace.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="Windows\DigitalFace.xaml.cs">
+      <DependentUpon>DigitalFace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\IFace.cs" />
     <Page Include="Windows\CalcFace.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -91,6 +88,10 @@
     <Page Include="Windows\AnalogFace.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\DigitalFace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
