@@ -1,6 +1,4 @@
-﻿using clock;
-
-namespace DigitalWatch.States
+﻿namespace DigitalWatch.States
 {
     public class AnalogWatchState : State
     {
@@ -12,6 +10,11 @@ namespace DigitalWatch.States
         public override void Hide()
         {
             Analog.Hide();
+        }
+
+        public override void ShowNotification(string message)
+        {
+            //todo
         }
     }
 }
