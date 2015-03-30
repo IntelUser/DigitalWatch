@@ -77,5 +77,7 @@ namespace DigitalWatch.Windows
         {
             Watch.SwitchState();
         }
+
+        
     }
 }
