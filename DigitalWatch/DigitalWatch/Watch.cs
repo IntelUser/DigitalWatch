@@ -24,6 +24,12 @@ namespace DigitalWatch
             _timer.Enabled = true;
         }
 
+        public static void Stop()
+        {
+            _timer.Enabled = false;
+
+        }
+
 
         static void _timer_Elapsed(object sender, ElapsedEventArgs e)
         {
