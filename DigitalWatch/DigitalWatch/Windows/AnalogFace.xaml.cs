@@ -1,17 +1,23 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
+using Timer = System.Timers.Timer;
 
 namespace DigitalWatch.Windows
 {
     public partial class AnalogFace : IFace
     {
+
         public AnalogFace()
         {
             InitializeComponent();
+         
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -19,29 +25,59 @@ namespace DigitalWatch.Windows
             //this.DragMove(); 
         }
 
-        public void ShowNotification(string email = "New Email!")
+        public void ShowNotification(string subject)
         {
-            var da = new DoubleAnimation
+
+            Task.Factory.StartNew(new Action(() =>
+
             {
-                From = 0,
-                To = 1,
-                Duration = new Duration(TimeSpan.FromSeconds(1)),
-                AutoReverse = false
-            };
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    var fadeIn = new DoubleAnimation
+                    {
+                        From = 0,
+                        To = 1,
+                        Duration = new Duration(TimeSpan.FromSeconds(1)),
+                        AutoReverse = false
+                    };
+                    
 
-            NotifyEllipse.Visibility = Visibility.Visible;
-            MessageBlock.Visibility = Visibility.Visible;
-            MessageBlock.Text = email;
+                    NotifyEllipse.Visibility = Visibility.Visible;
+                    MessageBlock.Visibility = Visibility.Visible;
+                    MessageBlock.Text = subject;
 
-            var notifyGeometry = new RectangleGeometry {Rect = new Rect(0, 0, 300, 100)};
-            NotifyEllipse.Clip = notifyGeometry;
-            NotifyEllipse.BeginAnimation(OpacityProperty, da);
-            MessageBlock.BeginAnimation(OpacityProperty, da);
+                    var notifyGeometry = new RectangleGeometry {Rect = new Rect(0, 0, 300, 100)};
+                    NotifyEllipse.Clip = notifyGeometry;
+                    NotifyEllipse.BeginAnimation(OpacityProperty, fadeIn);
+                    MessageBlock.BeginAnimation(OpacityProperty, fadeIn);
+                }));
+
+
+                    Thread.Sleep(2000);
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    var fadeOut = new DoubleAnimation
+                    {
+                        From = 1,
+                        To = 0,
+                        Duration = new Duration(TimeSpan.FromSeconds(1)),
+                        AutoReverse = false
+                    };
+                    NotifyEllipse.BeginAnimation(OpacityProperty, fadeOut);
+                    MessageBlock.BeginAnimation(OpacityProperty, fadeOut);
+                }));
+            }));
+
+
+            
+
         }
+
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ShowNotification();
+            ShowNotification("message");
         }
 
         private void Next_window_button_OnClick(object sender, RoutedEventArgs e)

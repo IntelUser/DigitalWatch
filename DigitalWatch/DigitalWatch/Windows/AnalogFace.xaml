@@ -35,11 +35,11 @@
         </Rectangle>
         <Button x:Name="next_window_button" Content=">>" HorizontalAlignment="Left" Margin="276,0,0,0" VerticalAlignment="Top" Width="24" Click="Next_window_button_OnClick"/>
 
-        <Ellipse Name="NotifyEllipse" Visibility="Hidden"  Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="280">
+        <Ellipse Name="NotifyEllipse" Visibility="Hidden"  Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="269" Margin="16,15,0,0" Stroke="Black" VerticalAlignment="Top" Width="267">
 
         </Ellipse>
         <Button Content="Button" HorizontalAlignment="Left" Margin="330,-39,-105,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <TextBlock Name="MessageBlock" Visibility="Hidden" HorizontalAlignment="Left" Height="31" Margin="93,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" FontFamily="Roboto" FontSize="18" FontWeight="Bold"/>
+        <TextBlock Name="MessageBlock" Visibility="Hidden" HorizontalAlignment="Left" Height="31" Margin="81,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" FontFamily="Roboto" FontSize="18" FontWeight="Bold" Foreground="#FFFF000C"/>
 
         <!---->
         

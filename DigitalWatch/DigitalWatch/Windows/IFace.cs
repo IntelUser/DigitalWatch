@@ -11,7 +11,7 @@ namespace DigitalWatch.Windows
     {
         void UpdateTime(DateTime time);
 
-        void ShowNotification(String message);
+        void ShowNotification(String subject);
 
         void Show();
 
