@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace DigitalWatch.Windows
 {
@@ -44,9 +48,51 @@ namespace DigitalWatch.Windows
             Console.WriteLine(@"Calculator Time is:{0}", time.ToLongTimeString());
         }
 
-        public void ShowNotification(string message)
+        public void ShowNotification(string subject)
         {
-           Console.WriteLine(@"Notification: {0}", message);
+
+            Task.Factory.StartNew(new Action(() =>
+            {
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    var fadeIn = new DoubleAnimation
+                    {
+                        From = 0,
+                        To = 1,
+                        Duration = new Duration(TimeSpan.FromSeconds(1)),
+                        AutoReverse = false
+                    };
+
+
+                    NotifyEllipse.Visibility = Visibility.Visible;
+                    MessageBlock.Visibility = Visibility.Visible;
+                    MessageBlock.Text = subject;
+
+                    var notifyGeometry = new RectangleGeometry { Rect = new Rect(0, 0, 300, 100) };
+                    NotifyEllipse.Clip = notifyGeometry;
+                    NotifyEllipse.BeginAnimation(OpacityProperty, fadeIn);
+                    MessageBlock.BeginAnimation(OpacityProperty, fadeIn);
+                }));
+
+
+                Thread.Sleep(2000);
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    var fadeOut = new DoubleAnimation
+                    {
+                        From = 1,
+                        To = 0,
+                        Duration = new Duration(TimeSpan.FromSeconds(1)),
+                        AutoReverse = false
+                    };
+                    NotifyEllipse.BeginAnimation(OpacityProperty, fadeOut);
+                    MessageBlock.BeginAnimation(OpacityProperty, fadeOut);
+                }));
+            }));
+
+
+
+
         }
     }
 }
