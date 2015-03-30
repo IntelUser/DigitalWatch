@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Timers;
+using DigitalWatch.Email;
 using DigitalWatch.States;
 
 namespace DigitalWatch
@@ -9,7 +12,10 @@ namespace DigitalWatch
         //private readonly EmailConnector _emailConnector;
         private static readonly Context Context = new Context();
         private static readonly Queue<State> States = new Queue<State>();
-        private static Timer _timer;
+        private static Timer _timer, _emailCheckTimer;
+        
+        private static int numberOfEmails = 0;
+        private static object locker;
        
 
         public static void Start()
@@ -18,10 +24,43 @@ namespace DigitalWatch
             States.Enqueue(new CalculatorWatchState());
             States.Enqueue(new DigitalWatchState());
 
-           SwitchState();
-           _timer = new Timer(1000);
-           _timer.Elapsed += _timer_Elapsed;
+            SwitchState();
+            _timer = new Timer(1000);
+            _emailCheckTimer = new Timer(1000);
+
+            _timer.Elapsed += _timer_Elapsed;
+            _emailCheckTimer.Elapsed += _emailCheckTimer_Elapsed;
             _timer.Enabled = true;
+            _emailCheckTimer.Enabled = true;
+
+            
+            EmailConnector.GenerateEmails(15000);
+            
+        }
+
+        static void _emailCheckTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            
+            if (EmailConnector.GetEmails().GetEnumerator() != null)
+            {
+                var emailCollection = EmailConnector.GetEmails().ToList();
+                if (emailCollection.Count > numberOfEmails)
+                {
+                    lock (locker)
+                    {
+                        numberOfEmails = emailCollection.Count;
+                    }
+
+                    ShowEmailNotification(EmailConnector.GetEmails().First().Message);
+                }
+            }
+            
+           
+            
+           
+
+
+           
         }
 
         public static void Stop()
@@ -38,7 +77,7 @@ namespace DigitalWatch
 
         public static void ShowEmailNotification(string message)
         {
-
+            Context.State.ShowNotification(message);
         }
 
         public static void SwitchState()
@@ -52,7 +91,6 @@ namespace DigitalWatch
             States.Enqueue(tempState);              // re-add state to stack
             Context.State.Show();
         }
-
         
     }
 }
