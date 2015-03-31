@@ -6,24 +6,12 @@ using System.Threading.Tasks;
 
 namespace DigitalWatch.States
 {
+    /// <summary>
+    /// Holds the current state object
+    /// </summary>
     public class Context
     {
         public State State { get; set; }
 
-        public void Show()
-        {
-            if (State != null)
-            {
-                State.Show();
-            }
-        }
-
-        public void Hide()
-        {
-            if (State != null)
-            {
-                State.Hide();
-            }
-        }
     }
 }
