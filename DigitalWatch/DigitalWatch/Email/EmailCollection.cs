@@ -1,28 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace DigitalWatch.Email
 {
-    class EmailCollection : IEnumerable
+    class EmailCollection : IAbstractCollection
     {
-        private readonly List<Email> _emails = new List<Email>();
+        private readonly List<Email> _emails;
 
-        public IEnumerator GetEnumerator()
+        public EmailCollection()
         {
-            return _emails.GetEnumerator();
+            _emails = new List<Email>();
+        }
+        public Iterator CreateIterator()
+        {
+            return new Iterator(this._emails);
         }
 
-        public void AddEmail(Email email)
+        // Gets item count
+        public int Count
         {
-            _emails.Add(email);
+            get { return _emails.Count; }
         }
 
-        public void AddEmail(IEnumerable<Email> emailCollection)
+        // Indexer
+        public Email this[int index]
         {
-            foreach (var email in emailCollection)
-            {
-                _emails.Add(email);
-            }
+            get { return _emails[index]; }
+            set { _emails.Add(value); }
         }
     }
+
+   
+    
 }

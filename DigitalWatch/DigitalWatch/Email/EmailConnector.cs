@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
 
@@ -14,9 +15,9 @@ namespace DigitalWatch.Email
 
         
 
-        public static IEnumerable<Email> GetEmails()
+        public static Iterator GetEmails()
         {
-            return _emailCollection.GetEnumerator() as IEnumerable<Email>;
+            return _emailCollection.CreateIterator();
         }
 
         public static void GenerateEmails(int intervalMs)
@@ -27,12 +28,18 @@ namespace DigitalWatch.Email
             timer.Enabled = true;
         }
 
+        static void AddEmail(Email email)
+        {
+            _emailCollection[_emailCollection.Count + 1] = email;
+        }
+
         static void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             var message = _messageStrings[new Random().Next(0, _messageStrings.Length)];
             var subject = _subjectStrings[new Random().Next(0, _subjectStrings.Length)];
             var from = _contactStrings[new Random().Next(0, _contactStrings.Length)];
-            _emailCollection.AddEmail(new Email(message, subject, from, MyEmail));
+
+            AddEmail(new Email(message, subject, from, MyEmail));
         }
     }
 }

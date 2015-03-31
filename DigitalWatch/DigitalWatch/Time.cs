@@ -16,7 +16,7 @@ namespace DigitalWatch
 
         public DateTime GetTime()
         {
-            return DateTime.UtcNow;
+            return DateTime.Now;
         }
 
     }

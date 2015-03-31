@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
@@ -9,24 +10,25 @@ namespace DigitalWatch
 {
     public static class Watch
     {
-        //private readonly EmailConnector _emailConnector;
+      
         private static readonly Context Context = new Context();
         private static readonly Queue<State> States = new Queue<State>();
         private static Timer _timer, _emailCheckTimer;
         
         private static int numberOfEmails = 0;
-        private static object locker;
+        private static object locker = new object();
        
 
         public static void Start()
         {
+            EmailConnector.GenerateEmails(1500);
             States.Enqueue(new AnalogWatchState());
             States.Enqueue(new CalculatorWatchState());
             States.Enqueue(new DigitalWatchState());
 
             SwitchState();
             _timer = new Timer(1000);
-            _emailCheckTimer = new Timer(1000);
+            _emailCheckTimer = new Timer(10000);
 
             _timer.Elapsed += _timer_Elapsed;
             _emailCheckTimer.Elapsed += _emailCheckTimer_Elapsed;
@@ -34,33 +36,27 @@ namespace DigitalWatch
             _emailCheckTimer.Enabled = true;
 
             
-            EmailConnector.GenerateEmails(15000);
+           
             
         }
 
         static void _emailCheckTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            
-            if (EmailConnector.GetEmails().GetEnumerator() != null)
+
+
+            var iterator = EmailConnector.GetEmails();
+           
+            // the collection is first checked if any items are present
+            if (iterator.Count > numberOfEmails)
             {
-                var emailCollection = EmailConnector.GetEmails().ToList();
-                if (emailCollection.Count > numberOfEmails)
+                lock (locker)
                 {
-                    lock (locker)
-                    {
-                        numberOfEmails = emailCollection.Count;
-                    }
-
-                    ShowEmailNotification(EmailConnector.GetEmails().First().Message);
+                    numberOfEmails++;
                 }
+
+                ShowEmailNotification(iterator.Last().Message);
             }
-            
-           
-            
-           
 
-
-           
         }
 
         public static void Stop()

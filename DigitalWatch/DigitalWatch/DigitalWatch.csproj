@@ -57,6 +57,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Email\IAbstractCollection.cs" />
+    <Compile Include="Email\IAbstractIterator.cs" />
+    <Compile Include="Email\Iterator.cs" />
+    <Compile Include="States\Context.cs" />
     <Compile Include="States\DigitalWatchState.cs" />
     <Compile Include="States\State.cs" />
     <Compile Include="States\AnalogWatchState.cs" />
@@ -67,7 +71,6 @@
     <Compile Include="Email\Email.cs" />
     <Compile Include="Email\EmailCollection.cs" />
     <Compile Include="Email\EmailConnector.cs" />
-    <Compile Include="States\Context.cs" />
     <Compile Include="Time.cs" />
     <Compile Include="Watch.cs" />
     <Compile Include="Windows\AnalogFace.xaml.cs">
@@ -112,6 +115,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -138,9 +142,6 @@
     <Resource Include="Windows\images\backGroundMail.png" />
     <Resource Include="Windows\images\backGround.png" />
     <Resource Include="images\math.gif" />
-    <Content Include="MohammadDayyanCalendar.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Calculator\" />
