@@ -14,9 +14,9 @@ namespace DigitalWatch.States
             Analog.Hide();
         }
 
-        public override void ShowNotification(string message)
+        public override void ShowNotification(string message, string from)
         {
-            Analog.ShowNotification(message);
+            Analog.ShowNotification(message, from);
         }
 
         public override void UpdateTime(DateTime time)

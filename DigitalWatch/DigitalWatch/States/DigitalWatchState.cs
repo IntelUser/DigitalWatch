@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DigitalWatch.States
 {
@@ -32,9 +28,9 @@ namespace DigitalWatch.States
         /// by passing it to the ShowNotification method in DigitalFace.
         /// </summary>
         /// <param name="message"></param>
-        public override void ShowNotification(string message)
+        public override void ShowNotification(string message, string from)
         {
-            Digital.ShowNotification(message);
+            Digital.ShowNotification(message, from);
         }
 
         /// <summary>

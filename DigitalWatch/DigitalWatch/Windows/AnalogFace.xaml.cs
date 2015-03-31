@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
-using Timer = System.Timers.Timer;
 
 namespace DigitalWatch.Windows
 {
@@ -25,7 +23,7 @@ namespace DigitalWatch.Windows
             //this.DragMove(); 
         }
 
-        public void ShowNotification(string subject)
+        public void ShowNotification(string message, string from)
         {
 
             Task.Factory.StartNew(new Action(() =>
@@ -44,7 +42,7 @@ namespace DigitalWatch.Windows
 
                     NotifyEllipse.Visibility = Visibility.Visible;
                     MessageBlock.Visibility = Visibility.Visible;
-                    MessageBlock.Text = subject;
+                    MessageBlock.Text = String.Format("From: {0}, Message: {1}", from, message);
 
                     var notifyGeometry = new RectangleGeometry {Rect = new Rect(0, 0, 300, 100)};
                     NotifyEllipse.Clip = notifyGeometry;
@@ -66,18 +64,7 @@ namespace DigitalWatch.Windows
                     NotifyEllipse.BeginAnimation(OpacityProperty, fadeOut);
                     MessageBlock.BeginAnimation(OpacityProperty, fadeOut);
                 }));
-            }));
-
-
-            
-
-        }
-
-        
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ShowNotification("message");
+            }));   
         }
 
         private void Next_window_button_OnClick(object sender, RoutedEventArgs e)
@@ -94,6 +81,14 @@ namespace DigitalWatch.Windows
                 minuteHand.Angle = time.Minute * 6;
                 hourHand.Angle = (time.Hour * 30) + (time.Minute * 0.5);
             }));
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+            {
+                Watch.SwitchState();
+            }
         }
     }
 }

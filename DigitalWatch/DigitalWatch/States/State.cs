@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Windows;
 using DigitalWatch.Windows;
-using DigitalFace = DigitalWatch.Windows.DigitalFace;
 
 namespace DigitalWatch.States
 {
@@ -48,7 +46,7 @@ namespace DigitalWatch.States
         /// Implement this method for showing notifications.
         /// </summary>
         /// <param name="message"></param>
-        public virtual void ShowNotification(String message)
+        public virtual void ShowNotification(String message, string from)
         {
             
         }

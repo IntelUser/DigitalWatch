@@ -55,7 +55,7 @@ namespace DigitalWatch
                 {
                     _numberOfEmails++;
                 }
-                ShowEmailNotification(iterator.Last().Message);
+                ShowEmailNotification(iterator.Last().Message, iterator.Last().FromContact);
             }
         }
 
@@ -83,9 +83,9 @@ namespace DigitalWatch
         /// Shows a notification message on the current active state window
         /// </summary>
         /// <param name="message">The message that you want to display</param>
-        public static void ShowEmailNotification(string message)
+        public static void ShowEmailNotification(string message, string from)
         {
-            Context.State.ShowNotification(message);
+            Context.State.ShowNotification(message, from);
         }
 
         /// <summary>

@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
@@ -28,7 +29,7 @@ namespace DigitalWatch.Windows
             Console.WriteLine(@"Calculator Time is:{0}", time.ToLongTimeString());
         }
 
-        public void ShowNotification(string subject)
+        public void ShowNotification(string message, string from)
         {
             Task.Factory.StartNew(() =>
             {
@@ -45,7 +46,7 @@ namespace DigitalWatch.Windows
 
                     NotifyEllipse.Visibility = Visibility.Visible;
                     MessageBlock.Visibility = Visibility.Visible;
-                    MessageBlock.Text = subject;
+                    MessageBlock.Text = String.Format("From: {0}, Message: {1}", from, message);
 
                     var notifyGeometry = new RectangleGeometry {Rect = new Rect(0, 0, 300, 100)};
                     NotifyEllipse.Clip = notifyGeometry;
@@ -248,6 +249,14 @@ namespace DigitalWatch.Windows
                 if (token == "*")
                     return new MultiplyExpression(left, right);
                 return null;
+            }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+            {
+                Watch.SwitchState();
             }
         }
     }

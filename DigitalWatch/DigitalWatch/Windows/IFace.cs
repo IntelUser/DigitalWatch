@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace DigitalWatch.Windows
 {
@@ -14,7 +9,7 @@ namespace DigitalWatch.Windows
     {
         void UpdateTime(DateTime time);
 
-        void ShowNotification(String subject);
+        void ShowNotification(String message, String from);
 
         void Show();
 
