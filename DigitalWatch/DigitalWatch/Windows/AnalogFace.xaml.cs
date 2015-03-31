@@ -51,7 +51,7 @@ namespace DigitalWatch.Windows
                 }));
 
 
-                    Thread.Sleep(2000);
+                    Thread.Sleep(4000);
                 Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     var fadeOut = new DoubleAnimation
