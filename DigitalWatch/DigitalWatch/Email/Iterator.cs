@@ -9,20 +9,30 @@ namespace DigitalWatch.Email
         private int _current = 0;
         private int _step = 1;
 
-        // Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="collection"> the collection which holds the emails</param>
+
         public Iterator(List<Email> collection)
         {
             this._collection = collection;
         }
 
-        // Gets first item
+        /// <summary>
+        /// Gets first item
+        /// </summary>
+        /// <returns>the first item in the collection</returns>
         public Email First()
         {
             _current = 0;
             return _collection[_current];
         }
 
-        // Gets next item
+        /// <summary>
+        ///  Gets next item
+        /// </summary>
+        /// <returns>The next item</returns>
         public Email Next()
         {
             _current += _step;
@@ -32,34 +42,43 @@ namespace DigitalWatch.Email
                 return null;
         }
 
-        // Gets or sets stepsize
+        /// <summary>
+        ///  Gets or sets stepsize
+        /// </summary>
         public int Step
         {
             get { return _step; }
             set { _step = value; }
         }
 
-        // Gets current iterator item
+        /// <summary>
+        ///  Gets current iterator item
+        /// </summary>
         public Email CurrentItem
         {
             get { return _collection[_current]; }
         }
 
-        // Gets whether iteration is complete
+        /// <summary>
+        ///  Gets whether iteration is complete
+        /// </summary>
         public bool IsDone
         {
             get { return _current >= _collection.Count; }
         }
 
-
+        /// <summary>
+        /// Gets the total items in the collection.
+        /// </summary>
         public int Count
         {
             get { return _collection.Count; }
         }
 
-
-
-
+        /// <summary>
+        /// Gets the last item in the collection
+        /// </summary>
+        /// <returns>The last email in the collection</returns>
         public Email Last()
         {
             return _collection.Last();
