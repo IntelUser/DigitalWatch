@@ -27,6 +27,6 @@
         </Ellipse>
         <TextBlock Name="MessageBlock" Visibility="Hidden" HorizontalAlignment="Left" Height="50" Margin="81,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" FontFamily="Roboto" FontSize="10" FontWeight="Bold" Foreground="#FFFF000C"/>
 
-        <Label x:Name="time_label" Content="Label"  Margin="38,118,38,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="67" Width="224" Foreground="#FF2FC143" FontSize="36" FontFamily="Time" Background="Transparent" TextOptions.TextFormattingMode="Display"/>
+        <Label x:Name="time_label" Content=""  Margin="38,118,38,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="67" Width="224" Foreground="#FF2FC143" FontSize="36" FontFamily="Time" Background="Transparent" TextOptions.TextFormattingMode="Display"/>
     </Grid>
 </Window>

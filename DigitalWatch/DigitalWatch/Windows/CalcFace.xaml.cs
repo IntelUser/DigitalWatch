@@ -18,7 +18,7 @@ namespace DigitalWatch.Windows
     public partial class CalcFace : IFace
     {
         private string tokenString = String.Empty;
-        private bool isResult;
+        private bool _isResult;
         public CalcFace()
         {
             InitializeComponent();
@@ -73,10 +73,10 @@ namespace DigitalWatch.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (isResult)
+            if (_isResult)
             {
                 OutpuTextBlock.Text = "";
-                isResult = false;
+                _isResult = false;
             }
             var b = (Button) sender;
             //is number
@@ -93,11 +93,22 @@ namespace DigitalWatch.Windows
                 var tokenList = new List<string>(tokenString.Split(' '));
 
                 IExpression expression = new TokenReader().ReadToken(tokenList);
-                OutpuTextBlock.Text = expression.Interpret().ToString();
-                isResult = true;
 
-                tokenString = "";
-                tokenList.Clear();
+                if (expression != null)
+                {
+                    OutpuTextBlock.Text = expression.Interpret().ToString();
+                    _isResult = true;
+
+                    tokenString = "";
+                    tokenList.Clear();
+                }
+                else
+                {
+                    tokenList.Clear();
+                   Watch.ShowEmailNotification("Invalid command","calculator");
+                    OutpuTextBlock.Text = "";
+                }
+                
             }
             else
             {
@@ -112,35 +123,35 @@ namespace DigitalWatch.Windows
 
         public class AddExpression : IExpression
         {
-            private readonly IExpression leftExpression;
-            private readonly IExpression rightExpression;
+            private readonly IExpression _leftExpression;
+            private readonly IExpression _rightExpression;
 
             public AddExpression(IExpression left, IExpression right)
             {
-                leftExpression = left;
-                rightExpression = right;
+                _leftExpression = left;
+                _rightExpression = right;
             }
 
             int IExpression.Interpret()
             {
-                return leftExpression.Interpret() + rightExpression.Interpret();
+                return _leftExpression.Interpret() + _rightExpression.Interpret();
             }
         }
 
         public class MultiplyExpression : IExpression
         {
-            private readonly IExpression leftExpression;
-            private readonly IExpression rightExpression;
+            private readonly IExpression _leftExpression;
+            private readonly IExpression _rightExpression;
 
             public MultiplyExpression(IExpression left, IExpression right)
             {
-                leftExpression = left;
-                rightExpression = right;
+                _leftExpression = left;
+                _rightExpression = right;
             }
 
             int IExpression.Interpret()
             {
-                return leftExpression.Interpret()*rightExpression.Interpret();
+                return _leftExpression.Interpret() * _rightExpression.Interpret();
             }
         }
 
@@ -157,7 +168,7 @@ namespace DigitalWatch.Windows
 
             int IExpression.Interpret()
             {
-                return leftExpression.Interpret()/rightExpression.Interpret();
+                return leftExpression.Interpret() / rightExpression.Interpret();
             }
         }
 
@@ -211,31 +222,54 @@ namespace DigitalWatch.Windows
 
             private IExpression ReadNextToken(List<string> tokenList)
             {
-                int i;
-                if (int.TryParse(tokenList.First(), out i)) //if the token is integer (terminal)
+                try
                 {
-                    tokenList.RemoveAt(0); //process terminal expression
-                    return new NumberExpression(i);
+                    int i;
+                    if (int.TryParse(tokenList.First(), out i)) //if the token is integer (terminal)
+                    {
+                        tokenList.RemoveAt(0); //process terminal expression
+                        return new NumberExpression(i);
+                    }
+                    return ReadNonTerminal(tokenList); //process nonTerminal expression
                 }
-                return ReadNonTerminal(tokenList); //process nonTerminal expression
+                catch (InvalidOperationException ioe)
+                {
+                    return null;
+                }
+               
             }
 
             private IExpression ReadNonTerminal(List<string> tokenList)
             {
-                string token = tokenList.First();
+                var token = tokenList.First();
                 tokenList.RemoveAt(0); //read the symbol
                 IExpression left = ReadNextToken(tokenList); //read left expression
                 IExpression right = ReadNextToken(tokenList); //read right expression
-
-                if (token == "+")
-                    return new AddExpression(left, right);
-                if (token == "-")
-                    return new SubtractExpression(left, right);
-                if (token == "/")
-                    return new DivideExpression(left, right);
-                if (token == "*")
-                    return new MultiplyExpression(left, right);
-                return null;
+                if (left != null && right != null)
+                {
+                    switch (token)
+                    {
+                        case "+":
+                            return new AddExpression(left, right);
+                            break;
+                        case "-":
+                            return new SubtractExpression(left, right);
+                            break;
+                        case "/":
+                            return new DivideExpression(left, right);
+                            break;
+                        case "*":
+                            return new MultiplyExpression(left, right);
+                            break;
+                        default:
+                            return null;
+                            break;
+                    }
+                }
+                else
+                {
+                    return null;    // invalid expression
+                }
             }
         }
 
