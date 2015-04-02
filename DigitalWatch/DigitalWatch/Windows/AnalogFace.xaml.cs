@@ -23,6 +23,7 @@ namespace DigitalWatch.Windows
             //this.DragMove(); 
         }
 
+
         public void ShowNotification(string message, string from)
         {
 
@@ -78,6 +79,11 @@ namespace DigitalWatch.Windows
             }));
         }
 
+        /// <summary>
+        /// Detects key press up and calls SwitchState on the Watch
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Up && !e.IsRepeat)

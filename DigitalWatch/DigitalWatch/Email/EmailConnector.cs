@@ -3,6 +3,9 @@ using System.Timers;
 
 namespace DigitalWatch.Email
 {
+    /// <summary>
+    /// Emailconnector is providing generation of emails 
+    /// </summary>
     public static class EmailConnector
     {
         private static readonly EmailCollection _emailCollection = new EmailCollection();       // holds a Email Collection.

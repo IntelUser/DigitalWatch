@@ -28,6 +28,7 @@ namespace DigitalWatch.States
         /// by passing it to the ShowNotification method in DigitalFace.
         /// </summary>
         /// <param name="message"></param>
+        /// <param name="from">sender</param>
         public override void ShowNotification(string message, string from)
         {
             Digital.ShowNotification(message, from);
