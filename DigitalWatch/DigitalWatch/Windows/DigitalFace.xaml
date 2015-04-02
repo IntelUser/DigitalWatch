@@ -28,6 +28,5 @@
         <TextBlock Name="MessageBlock" Visibility="Hidden" HorizontalAlignment="Left" Height="50" Margin="81,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" FontFamily="Roboto" FontSize="10" FontWeight="Bold" Foreground="#FFFF000C"/>
 
         <Label x:Name="time_label" Content="Label"  Margin="38,118,38,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="67" Width="224" Foreground="#FF2FC143" FontSize="36" FontFamily="Time" Background="Transparent" TextOptions.TextFormattingMode="Display"/>
-        <Button x:Name="next_window_button" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="276,0,0,0" VerticalAlignment="Top" Width="24" Click="Next_window_button_OnClick"/>
     </Grid>
 </Window>

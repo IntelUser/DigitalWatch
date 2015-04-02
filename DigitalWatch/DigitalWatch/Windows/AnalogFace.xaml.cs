@@ -67,11 +67,6 @@ namespace DigitalWatch.Windows
             }));   
         }
 
-        private void Next_window_button_OnClick(object sender, RoutedEventArgs e)
-        {
-             Watch.SwitchState();
-        }
-
         public void UpdateTime(DateTime time)
         {
             this.Dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() =>

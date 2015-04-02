@@ -44,7 +44,6 @@ namespace DigitalWatch.Windows
                         AutoReverse = false
                     };
 
-
                     NotifyEllipse.Visibility = Visibility.Visible;
                     MessageBlock.Visibility = Visibility.Visible;
                     MessageBlock.Text = String.Format("From: {0}, Message: {1}", from, message);
@@ -99,8 +98,6 @@ namespace DigitalWatch.Windows
 
                 tokenString = "";
                 tokenList.Clear();
-
-
             }
             else
             {
@@ -109,20 +106,9 @@ namespace DigitalWatch.Windows
                 string symbol = b.Content.ToString();
                 OutpuTextBlock.Text += String.Format("{0} ", symbol);
                 tokenString += String.Format("{0} ", symbol);
-
             }
-
-
-            
-
-
-
         }
 
-        private void SwitchStatebtn_OnClick(object sender, RoutedEventArgs e)
-        {
-            Watch.SwitchState();
-        }
 
         public class AddExpression : IExpression
         {

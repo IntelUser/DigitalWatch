@@ -33,7 +33,6 @@
                 <RotateTransform x:Name="hourHand" CenterX="0" CenterY="70" Angle="0" />
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Button x:Name="next_window_button" Content=">>" HorizontalAlignment="Left" Margin="276,0,0,0" VerticalAlignment="Top" Width="24" Click="Next_window_button_OnClick"/>
 
         <Ellipse Name="NotifyEllipse" Visibility="Hidden"  Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="269" Margin="16,15,0,0" Stroke="Black" VerticalAlignment="Top" Width="267">
 

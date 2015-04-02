@@ -32,7 +32,6 @@
                 <RotateTransform x:Name="hourHand" CenterX="0" CenterY="70" Angle="0" />
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Button x:Name="switchStatebtn" Content=">>" HorizontalAlignment="Left" Margin="276,0,0,0" VerticalAlignment="Top" Width="24" Click="SwitchStatebtn_OnClick"/>
 
         <Ellipse Name="Background" Visibility="Visible"  Fill="#FFFFFF" HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="280" >
 

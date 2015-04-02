@@ -71,11 +71,6 @@ namespace DigitalWatch.Windows
             }));
         }
 
-        private void Next_window_button_OnClick(object sender, RoutedEventArgs e)
-        {
-            Watch.SwitchState();
-        }
-
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Up && !e.IsRepeat)
