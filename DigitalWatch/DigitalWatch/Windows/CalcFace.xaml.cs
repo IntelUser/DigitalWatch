@@ -13,6 +13,7 @@ namespace DigitalWatch.Windows
 {
     /// <summary>
     ///     Interaction logic for CalcFace.xaml
+    /// Uses Reverse Polish Notation!
     /// </summary>
     public partial class CalcFace : IFace
     {
