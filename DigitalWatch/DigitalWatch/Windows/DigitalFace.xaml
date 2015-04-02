@@ -5,7 +5,7 @@
         WindowStyle="None" Background="Transparent" WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize" Topmost="False" Opacity="1" Foreground="Transparent" KeyDown="Window_KeyDown">
     <Grid Width="300" Height="300">
-        <Image HorizontalAlignment="Left" Height="548" Margin="-114,-122,-134,-126" VerticalAlignment="Top" Width="548" Source="images/BN32BKBKMHGB.jpg"/>
+        <Image HorizontalAlignment="Left" Height="548" Margin="-17,-123,-231,-125" VerticalAlignment="Top" Width="548" Source="images/BN32BKBKMHGB.png"/>
         <Ellipse HorizontalAlignment="Left" Height="280" Margin="10,6,0,0" VerticalAlignment="Top" Width="280">
             <Ellipse.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
