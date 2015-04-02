@@ -255,7 +255,7 @@ namespace DigitalWatch.Windows
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Up)
+            if (e.Key == Key.Up && !e.IsRepeat)
             {
                 Watch.SwitchState();
             }

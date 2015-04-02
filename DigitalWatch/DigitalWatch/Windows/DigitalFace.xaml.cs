@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -77,7 +78,7 @@ namespace DigitalWatch.Windows
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Up)
+            if (e.Key == Key.Up && !e.IsRepeat)
             {
                 Watch.SwitchState();
             }
