@@ -129,9 +129,6 @@
     <Resource Include="images\clock.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\BN32BKBKMHGB.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\backGroundMail.png" />
   </ItemGroup>
   <ItemGroup>
